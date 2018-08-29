@@ -7,6 +7,9 @@ RUN chmod +x /bin/tini && \
     yum update -y && \
     yum install -y java-1.8.0-openjdk-devel jfrog-artifactory-pro && \
     yum clean all
+    
+EXPOSE 8081
 
-#ENTRYPOINT ["/bin/tini", "--", "/entrypoint.sh"]
+USER artifactory
+ 
 ENTRYPOINT ["/bin/tini", "/opt/jfrog/artifactory/tomcat/bin/catalina.sh", "run"]
